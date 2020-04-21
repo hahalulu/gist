@@ -1,0 +1,5 @@
+Các controller của parameters config, unfix, archiving... đều extend từ BaseController
+BaseController có hàm sendToNoti để routing các loại action trên thành các message tương ứng. Các controller đều phải truyền thông tin của object đang thao tác xuống sendToNoti. Hàm này sử dụng thông tin của object để tạo ra message tương ứng. VD: {table_name} is changed by; {job_name} is completed by {user} at {time}
+Hàm sendToNoti gửi message vào rabbitMQ (producer) . Có 2 consumer là webapp để nhận message realtime hiển thị lên push notification và 1 service trong phoenix-api listen để lưu dữ liệu lịch sử 
+Mặc định trong phoenix có bind queue Noti với exchange Noti để, Service RabbitListener khi có dữ liệu về queue Noti sẽ transform và thành history data của từng user và đẩy dữ liệu vào elasticsearch làm dữ liệu lịch sử
+Với mỗi lượt user xem history sẽ cần reset số đếm trên giao diện. Việc này được thực hiện bởi counting service. Dữ liệu được lưu trong database Phoenix_Conf
