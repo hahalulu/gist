@@ -1,0 +1,24 @@
+- lưu dữ liệu kiểu graph để thể hiện mối quan hệ giữa data. Bình thường thì phải xác định các bảng, các trường, kiểu dữ liệu....kiểu cũ thì thay đổi cấu trúc bảng khó, nhất là khi dữ liệu lớn lên
+- Relation: mỗi table có cột,dòng là data và bản chất là 1 set 1 loại thông tin (data)
+- Graph thì các quan hệ dựa trên các nút, các cạnh, cạnh thể hiện mối quan hệ giữa 2 nodes, mỗi nút thì coi như 1 entity. Cho nên việc thêm các quan hệ mới cũng dễ hơn. 
+- Không phải quan tâm đến việc quản lý JOIN hay các khóa ngoại giữa các bảng
+- Dễ visualize hơn, thấy bảo update data gần như realtime
+- Đọc 1 số case study kiểu nghiên cứu sinh học, các loại thuốc liên hệ với gene người ntn, dự án về dạy học, để dựa vào lịch sử học của từng người sau đó đưa ra gợi ý mấy courses liên quan
+- Trước em có làm 1 cái về customer relationship, kiểu các cty x,y,z là cty con của A. Xong các cty con góp vốn vào cty B, C...
+- Thiết kế của graph kiểu hỗ trợ để scan /duyệt nhanh, thêm mới cũng nhanh, dự là giống mấy thuật toán bfs dfs, tìm kiếm theo chiều rộng/sâu
+
+Pro: really fast queries when you are looking for relationships between nodes
+Pro: really fast to traverse nodes
+Pro: Can represent multiple dimensions
+
+Con: Inappropriate for transactional information, like accounting records where relationships between records are simpler
+Con: Harder to do summing queries and max queries efficiently - counting queries not harder
+Con: Usually need to learn a new query language like CIPHER
+Con: Fewer vendors to choose from, and smaller user base, so harder to get support when you run into issues
+
+https://dzone.com/articles/nosql-graphdb
+https://dzone.com/articles/crossing-the-chasm-eight-prerequisites-for-a-graph-2
+https://www.liip.ch/en/blog/neo4j-and-graphql-a-perfect-match
+https://neo4j.com/developer/graph-database/
+https://zxthanhhuy.wordpress.com/2015/08/04/suc-manh-cua-graph-database/
+https://dzone.com/articles/graph-databases-101
