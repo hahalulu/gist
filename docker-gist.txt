@@ -2,7 +2,7 @@
 docker ps
 
 #jump to location of container
-docker exec -it container-id
+docker exec -it container-id /bin/bash
 
 #start neo4j
 SET NEO4J_HTTP_PORT=7474

@@ -1,20 +1,42 @@
-- lưu dữ liệu kiểu graph để thể hiện mối quan hệ giữa data. Bình thường thì phải xác định các bảng, các trường, kiểu dữ liệu....kiểu cũ thì thay đổi cấu trúc bảng khó, nhất là khi dữ liệu lớn lên
+- lưu dữ liệu kiểu graph để thể hiện mối quan hệ giữa data. Bình thường với kiểu relation db thì phải xác định các bảng, các trường, kiểu dữ liệu....kiểu cũ thì thay đổi cấu trúc bảng khó, nhất là khi dữ liệu lớn lên
 - Relation: mỗi table có cột,dòng là data và bản chất là 1 set 1 loại thông tin (data)
 - Graph thì các quan hệ dựa trên các nút, các cạnh, cạnh thể hiện mối quan hệ giữa 2 nodes, mỗi nút thì coi như 1 entity. Cho nên việc thêm các quan hệ mới cũng dễ hơn. 
 - Không phải quan tâm đến việc quản lý JOIN hay các khóa ngoại giữa các bảng
 - Dễ visualize hơn, thấy bảo update data gần như realtime
-- Đọc 1 số case study kiểu nghiên cứu sinh học, các loại thuốc liên hệ với gene người ntn, dự án về dạy học, để dựa vào lịch sử học của từng người sau đó đưa ra gợi ý mấy courses liên quan
-- Trước em có làm 1 cái về customer relationship, kiểu các cty x,y,z là cty con của A. Xong các cty con góp vốn vào cty B, C...
-- Thiết kế của graph kiểu hỗ trợ để scan /duyệt nhanh, thêm mới cũng nhanh, dự là giống mấy thuật toán bfs dfs, tìm kiếm theo chiều rộng/sâu
+- Thiết kế của graph kiểu hỗ trợ để scan /duyệt nhanh, thêm mới cũng nhanh, dự là giống mấy thuật toán bfs dfs, tìm kiếm theo chiều rộng/sâu, sử dụng con trỏ để duyệt các node
+- 1 nhóm các nodes cùng thuộc tính đặt là label. Label thể hiện các chiều của data - dimension. 1 nodes có thể được gán nhiều label
+label: All nodes labeled with the same label belongs to the same set. Many database queries can work with these sets instead of the whole graph, making queries easier to write and more efficient
+Since a relationship always has a start and end node, you cannot delete a node without also deleting its associated relationships.
+
+
+- Relationship có nhiều kiểu và dùng động từ để định nghĩa. Thuộc tính roles trong có cấu trúc dữ liệu là một array với chỉ một phần tử trong nó
+A --------> B
+A Acted in B
+Source -> Target
+- 1 nodes có thể có relationship đến chính nó
+
+
+Quan hệ n-n thường phải thêm bảng trung gian và khai báo thêm các fk_id, quan hệ càng phức tạp thì càng mất công xử lý và vận hành hơn
+In Cypher, the syntax remains concise and focused on domain components and the connections among them, expressing the pattern to find or create data more visually and clearly.
+
+Tóm lại là phù hợp với các bài toàn cần nhiều thông tin về quan hệ của dữ liệu, bài toán về suggestion
+
 
 Pro: really fast queries when you are looking for relationships between nodes
 Pro: really fast to traverse nodes
 Pro: Can represent multiple dimensions
+Neo4j không có schema, có nghĩa là mô hình dữ liệu của bạn có thể thích ứng và thay đổi dễ dàng với doanh nghiệp của bạn
+Điều thuận lợi nhất của CSDL này là hỗ trợ điều hướng nhanh hơn giữa các các mối quan hệ (relationship).
+Graph database được ưu tiên sư dụng với dữ liệu được liên kết chặt chẽ ở mức cao. CSDL này có cấu trúc quan hệ node. Các nodes và các relationships chứa 1 Key Value Pair nơi dữ liệu được lưu trữ.
+
 
 Con: Inappropriate for transactional information, like accounting records where relationships between records are simpler
 Con: Harder to do summing queries and max queries efficiently - counting queries not harder
 Con: Usually need to learn a new query language like CIPHER
 Con: Fewer vendors to choose from, and smaller user base, so harder to get support when you run into issues
+lưu trữ 1 graph trong neo4j phải nằm trên 1 máy => cái này rất ko ổn nếu có graph to, có cách để scale bằng Apache Giraph 
+Điểm yếu đọc trên stackoverflow nó bảo nếu dùng để tổng hợp dữ liệu từ nhiều nguồn sẽ chậm do nó kéo theo script để tạo các graph quan hệ
+
 
 https://dzone.com/articles/nosql-graphdb
 https://dzone.com/articles/crossing-the-chasm-eight-prerequisites-for-a-graph-2
@@ -22,3 +44,32 @@ https://www.liip.ch/en/blog/neo4j-and-graphql-a-perfect-match
 https://neo4j.com/developer/graph-database/
 https://zxthanhhuy.wordpress.com/2015/08/04/suc-manh-cua-graph-database/
 https://dzone.com/articles/graph-databases-101
+
+
+
+
+
+If you’ve found yourself needing to write very large JOIN statements or dealing with long paths through your data, then you are probably facing a graph
+- Đọc 1 số case study kiểu nghiên cứu sinh học, các loại thuốc liên hệ với gene người ntn, dự án về dạy học, để dựa vào lịch sử học của từng người sau đó đưa ra gợi ý mấy courses liên quan
+- Trước em có làm 1 cái về customer relationship, kiểu các cty x,y,z là cty con của A. Xong các cty con góp vốn vào cty B, C...
+- Có vẻ như facebook tìm bạn liên quan dùng 1 dạng graphdb, push data stream vào kafka, tính score match
+
+Xem video introduction của neo4j nó nói ngay case study là 1 doanh nghiệp, các dữ liệu liên kết với nhau, nếu dùng graphdb có thể nhìn được các patterns hoặc trend mà mình sẽ ko thấy được khi làm các hệ thống kiểu traditional => Cái này là hướng data driven design.
+Có thể dùng dữ liệu lịch sử để phân tích => đưa ra các hướng kinh doanh phù hợp
+
+
+
+
+Mapping convention:
+
+RELATIONAL  GRAPH (NEO4J)
+instance	instance
+table		label
+row 		node
+schema		schema
+row-id 		NAN
+
+ArangoDB
+OrientDB
+HyperGraph
+Graphdb lite

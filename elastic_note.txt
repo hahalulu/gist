@@ -1,0 +1,6 @@
+concern về elastic:
+- Ko hợp với data update thường xuyên => phải quản lý thay đổi tốt với các data sources.
+- Syntax crud dễ như SQL nhưng aggregate phức tạp hơn SQL
+- Ko hỗ trợ JOIN. Nếu cần lấy dữ liệu pre-calculate cần 2 câu query
+- Vận hành và devops khó kiếm người có kinh nghiệm
+- Sử dụng làm OLAP cho các report theo nhiều chiều phải làm manual, cần có nhiều kinh nghiệm với Lucene, trong khi SQL có nhiều thư viện hỗ trợ và ổn định hơn
