@@ -1,0 +1,14 @@
+- kpi có ảnh hưởng đến pHH và pQL ko? ==> CÓ
+- công thức tính pHH pQL?
+- pHH, pQL link trực tiếp với user hay theo level của user? Có vẻ hệ thống cũ đang gắn đến user_id
+- pQL sẽ ăn theo cây quản lý. cần xác định rate giữa 2 lv bất kỳ
+- user có thể mapping theo nhiều công thức comission (bán nhiều sản phẩm hoặc thuộc nhiều nhóm sale)
+- hệ thống hiện tại nhân sự đang cài đặt phí quản lý ntn?
+- lịch sử thay đổi cấu hình phí?
+- khi chuyển hđ/kh/ nhân sự thay đổi level: cần chỉ ra data nào thay đổi.
+
+- database cần nghĩ thêm
+- cần 1 cục user kpi cấu hình kpi cho từng user
+- gán user với hợp đồng/ khách hàng
+- chính sách commision mức độ thay đổi ntn?
+
