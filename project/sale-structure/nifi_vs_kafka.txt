@@ -1,0 +1,36 @@
+Support batch processing/ realtime vs same
+Data buffering / Back Pressure          vs Not easy to config backpressure
+Easy to control latency / through put   vs Need to kill process, re-configure
+Extensibility vs Same
+Support dataflow, priority data         vs Not support
+Easy to transform data, format conversion, data enrichment (many processors support) vs only support with regex for simple transform, with complex transformation, need to write /maintain Java code
+Can handle arbitrary data size vs limit
+
+
+Support data sources : 
+kafka ~70 connectors
+nifi > 200 processors
+
+
+NiFi
+• Provides dataflow solution
+• Centralized management, from edge to core
+• Great traceability, event level data provenance
+starting when data is born • Interactive command and control – real time operational visibility
+• Dataflow management, including prioritization, back pressure, and edge intelligence
+• Visual representation of global dataflow
+
+Kafka
+• Provides durable stream store
+• Low latency
+• Distributed data durability
+• Decentralized management of producers & consumers
+
+
+Imagine:
+If we have a large variety of different sources, use Kafka is hard to craft flows.
+If output of the result to a large variety of destinations
+If we have complex process of load data (many steps to load data). It's hard to captures all process
+Nifi have processor support for audit whole ETL process
+
+Demo nifi.
