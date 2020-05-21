@@ -6,44 +6,36 @@
 	Các report của nghiệp vụ yêu cầu 
 
 - Các services dự kiến cần cho để tính commision, fee
+	SalePerson service
 	KPI service
 	Commision service
 	Management-Fee service
 	Transaction service
+
+
 	Reporting service
 
 - Mô tả từng service và quan hệ 
 
-
-Do yêu cầu bài toán nên cần phải thực hiện việc migrate dữ liệu (ETL data) từ các hệ thống khác về 1 database chung, cần phải hỗ trợ batch processing và realtime data. Có 2 phương án:
+Do yêu cầu bài toán nên cần phải thực hiện việc migrate dữ liệu (ETL data) từ các hệ thống khác (sub-system) về 1 database chung, cần phải hỗ trợ batch processing và realtime data. Có 2 phương án:
 1. Sử dụng kafka để subscribe vào các datasources. Sau đó sử dụng 1 service đẩy dữ liệu về Postgre (2 Steps)
 2. Sử dụng apache nifi, thư viện hỗ trợ việc ETL data đẩy thẳng về Postgre
 Comparision: TBD
 
 Vấn đề của transaction service:
-- Phải chia thành các module nhỏ để tính theo từng đầu sản phẩm vì các sản phẩm có chính sách khác nhau và dữ liệu đầu vào cũng khác nhau.
+- Phải chia thành các module nhỏ hơn để tính theo từng đầu sản phẩm vì các sản phẩm có chính sách khác nhau và dữ liệu đầu vào cũng khác nhau.
 
 Kết quả đẩy vào Postgre hay NoSQL
 - Sử dụng data trên postgre dễ dàng với tạo các reports hay OLAP qua các tools như tableau, pentaho, power BI... Vấn đề scale lên với postgre thì cần tính thêm. Cần phải đẩy ra db riêng cho reports. Ưu điểm là hỗ trợ sẵn dashboard, visualization. tableau giá khoảng 70-120$/ month
-- Đẩy kết quả đã tính toán xong ra noSQL. Dễ scale theo chiều ngang. Tạo các reports mới cần có devs làm, mất công để maintain. Chi phí trả cho devs có thể cao hơn 
+- Đẩy kết quả đã tính toán xong ra noSQL. Dễ scale theo chiều ngang. Tạo các reports mới cần có devs làm, mất công để maintain. Chi phí trả cho devs có thể cao hơn mua các tools report kéo thả
 
 
-Data size
-Chú ý các vấn đề liên quan đến tính HA...
-
-
-
-1. Mô tả input - output của bài toán
-- Giới thiệu các services sẽ làm
-2. Mô hình tổng thể
 - Quan hệ của các services với nhau
 	transaction sẽ là trung tâm
 	tính kpi group theo user theo transaction của các sub-system đổ về. cần lấy thông tin về kpi của user, gọi sang sale-struct-service. (1)
 	Lấy ra commision dựa theo position + product. Tính ra được phí hoa hồng (commision by contract/transaction * kpi) (2)
 	Tính fee. Lấy thông tin của management fee. Tính fee theo commision ở step 2
 Vấn đề cần chú ý:
-Migrate data từ sub-system về
-	Apache nifi vs kafka
 Postgree scalable
 
 Limit   Value
@@ -57,6 +49,3 @@ Maximum Indexes per Table   Unlimited
 
 https://hub.packtpub.com/building-a-scalable-postgresql-solution/
 replication, cluster, sharding, partrition
-
-
-Reporting service
