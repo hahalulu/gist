@@ -1,7 +1,34 @@
+Apache NiFi is an open source data ingestion platform, based on Java. It was developed by NSA and is now being maintained and further development is supported by Apache foundation
+
+Apache NiFi processors are the basic blocks of creating a data flow. Every processor has different functionality, which contributes to the creation of output flowfile. Dataflow shown in the image below is fetching file from one directory using GetFile processor and storing it in another directory using PutFile processor.
+
+Use Zookeeper to manage the nodes
+
+Processors category's Nifi:
+Data Ingestion Processors
+Routing and Mediation Processors
+Database Access Processors
+Attribute Extraction Processors
+System Interaction Processors: run command/process from any system
+Data Transformation Processors
+Sending Data Processors
+Splitting and Aggregation Processors
+HTTP Processors
+AWS Processors
+
+
+Relationship + Queue
+The Apache NiFi data flow connection has a queuing system to handle the large amount of data inflow
+thêm ảnh show relationship success thì đi đâu, failed đi đâu
+
+Hỗ trợ chạy data groups
+
+Apache Nifi / Apache Kafka
+
 Support batch processing/ realtime vs same
 Data buffering / Back Pressure          vs Not easy to config backpressure
 Easy to control latency / through put   vs Need to kill process, re-configure
-Extensibility vs Same
+Extensibility (custom processors) vs Same (custom sink)
 Support dataflow, priority data         vs Not support
 Easy to transform data, format conversion, data enrichment (many processors support) vs only support with regex for simple transform, with complex transformation, need to write /maintain Java code
 Can handle arbitrary data size vs limit
@@ -32,8 +59,13 @@ If we have a large variety of different sources, use Kafka is hard to craft flow
 If output of the result to a large variety of destinations
 If we have complex process of load data (many steps to load data). It's hard to captures all process
 Nifi have processor support for audit whole ETL process
+Case study before: used SSIS ETL of MS
 
 With JDBC, Nifi support SQL query native, Kafka JDBC sink support Upsert, Merge only.
 => Sẽ có những cases mà Kafka ko thể hỗ trợ được
 
+Step:
 Demo nifi.
+Show processors
+Show images that have handle transform data, loop, extract text...
+Ingest data from CSV file
