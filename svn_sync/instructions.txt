@@ -1,0 +1,9 @@
+-- SVN chung http://10.32.36.46:8181/svn/HAV-ManagementSystem/
+	-- Tài li?u dào t?o trên SVN chung
+	SVN\01. Management\20. References\02. Training
+-- Redmine http://10.32.32.50/redmine/
+
+-- SVN c?a team 
+	https://10.32.21.11/svn/SA-Team/	
+-- Thu m?c dang kí gi? dào t?o
+N:\HAV_ALL\HAV_FDM_Danh sach dang ky DaotaonoiboT52020.xlsx 
