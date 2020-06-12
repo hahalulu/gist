@@ -1,0 +1,596 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<meta name="author" content="">
+<meta name="Description" content="">
+<meta name="keywords" content="">
+<title>运营决策与数据分析系统</title>
+<link rel="shortcut icon" href="https://admin.instaplay.games/td.ico">
+<link href="super_admin_files/reset.css" rel="stylesheet" type="text/css" media="screen">
+<link href="super_admin_files/frame.css" rel="stylesheet" type="text/css" media="screen">
+<link href="super_admin_files/window.css" rel="stylesheet" type="text/css" media="screen">
+<link href="super_admin_files/main.css" rel="stylesheet" type="text/css" media="screen">
+<link href="super_admin_files/widget.css" rel="stylesheet" type="text/css" media="screen">
+<script type="text/javascript" language="JavaScript" src="super_admin_files/common.js"></script>
+<script type="text/javascript" language="JavaScript" src="super_admin_files/jquery-1.js"></script>
+<script type="text/javascript" language="JavaScript" src="super_admin_files/jquery-ui.js"></script>
+<script type="text/javascript" language="JavaScript" src="super_admin_files/WdatePicker.js"></script><link href="super_admin_files/WdatePicker.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+
+if (navigator.userAgent.search("Opera") > - 1 || navigator.userAgent.search("WebKit") > - 1) {
+    document.write('<link href="./css/opera.css" rel="stylesheet" type="text/css" media="screen" />');
+}
+
+function initDialog(dialog_id, init_code) {
+    $('#' + dialog_id).dialog(init_code);
+}
+
+function openDialog(dialog_id) {
+    $('#' + dialog_id).dialog('open');
+}
+
+function closeDialog(dialog_id) {
+    $('#' + dialog_id).remove();
+}
+
+// 初始化数组
+var _menu = [];
+_menu[0] = [];
+_menu[0][0] = [];
+_menu[0][0][0] = [];
+_menu[0][0][0][0] = {title:'综合数据',link:'index.php?action=plat_stats_organizedata',is_default:1};
+_menu[0][0][0][1] = {title:'留存数据',link:'index.php?action=plat_stats_retention',is_default:0};
+_menu[0][0][0][2] = {title:'支付统计',link:'index.php?action=plat_stats_chargedata',is_default:0};
+_menu[0][0][0][3] = {title:'综合数据带创角',link:'index.php?action=plat_stats_organizedataofrole',is_default:0};
+_menu[0][0][1] = [];
+_menu[0][0][1][0] = {title:'支付查询',link:'index.php?action=plat_stats_charge',is_default:1};
+_menu[0][0][1][1] = {title:'充值名单',link:'index.php?action=plat_stats_payRoll',is_default:0};
+_menu[0][0][2] = [];
+_menu[0][0][2][0] = {title:'渠道统计',link:'index.php?action=plat_stats_channeltj',is_default:1};
+_menu[0][0][3] = [];
+_menu[0][0][3][0] = {title:'弹窗统计',link:'index.php?action=plat_sdk_popup',is_default:1};
+_menu[0][1] = [];
+_menu[0][1][0] = [];
+_menu[0][1][0][0] = {title:'游戏管理',link:'index.php?action=game_manager_gameList',is_default:1};
+_menu[0][1][0][1] = {title:'轮播图',link:'index.php?action=game_carouselfigure_carouselfigureList',is_default:0};
+_menu[0][1][1] = [];
+_menu[0][1][1][0] = {title:'游戏内分享管理',link:'index.php?action=game_share_gameShareInfoList',is_default:1};
+_menu[0][1][2] = [];
+_menu[0][1][2][0] = {title:'轮播图列表',link:'index.php?action=game_jctg_lbList',is_default:1};
+_menu[0][1][2][1] = {title:'Icon列表',link:'index.php?action=game_jctg_iconList',is_default:0};
+_menu[0][1][3] = [];
+_menu[0][1][3][0] = {title:'资讯管理',link:'index.php?action=game_infor_inforList',is_default:1};
+_menu[0][1][4] = [];
+_menu[0][1][4][0] = {title:'礼包列表',link:'index.php?action=game_gift_giftList',is_default:1};
+_menu[0][1][5] = [];
+_menu[0][1][5][0] = {title:'评论管理',link:'index.php?action=game_comment_commentList',is_default:1};
+_menu[0][1][6] = [];
+_menu[0][1][6][0] = {title:'LP管理',link:'index.php?action=game_lp_list',is_default:1};
+_menu[0][1][7] = [];
+_menu[0][1][7][0] = {title:'渠道管理',link:'index.php?action=game_channel_list',is_default:1};
+_menu[0][1][8] = [];
+_menu[0][1][8][0] = {title:'活动管理',link:'index.php?action=game_activity_list',is_default:1};
+_menu[0][2] = [];
+_menu[0][2][0] = [];
+_menu[0][2][0][0] = {title:'游戏APP列表',link:'index.php?action=plat_publicnum_publicnumList',is_default:1};
+_menu[0][2][1] = [];
+_menu[0][2][1][0] = {title:'主动推送列表',link:'index.php?action=plat_weixin_weiXinSendList',is_default:1};
+_menu[0][2][1][1] = {title:'文本消息列表',link:'index.php?action=plat_weixin_weiXinWenBenHuiFuList',is_default:0};
+_menu[0][2][1][2] = {title:'按钮消息列表',link:'index.php?action=plat_weixin_weiXinButtonHuiFuList',is_default:0};
+_menu[0][2][1][3] = {title:'图文消息列表',link:'index.php?action=plat_weixin_weiXinImageAndWenBenHuiFuList',is_default:0};
+_menu[0][2][1][4] = {title:'默认消息设置',link:'index.php?action=plat_weixin_weiXinNoKeysHuiFuList',is_default:0};
+_menu[0][2][1][5] = {title:'自动回复消息设置',link:'index.php?action=plat_weixin_weiXinKeysList',is_default:0};
+_menu[0][2][1][6] = {title:'菜单选项设置',link:'index.php?action=plat_weixin_weiXinClickMenuHuiFuList',is_default:0};
+_menu[0][2][1][7] = {title:'标签管理',link:'index.php?action=plat_weixin_weiXinBiaoQianList',is_default:0};
+_menu[0][2][1][8] = {title:'消息统计',link:'index.php?action=plat_weixin_sendNewsStat',is_default:0};
+_menu[0][2][2] = [];
+_menu[0][2][2][0] = {title:'CP消息列表',link:'index.php?action=plat_cp_cpNewsList',is_default:1};
+_menu[0][2][3] = [];
+_menu[0][2][3][0] = {title:'关注BOT日期总数列表',link:'index.php?action=plat_bot_gzBotByDateList',is_default:1};
+_menu[0][2][3][1] = {title:'关注BOT详细列表',link:'index.php?action=plat_bot_gzBotList',is_default:0};
+_menu[0][3] = [];
+_menu[0][3][0] = [];
+_menu[0][3][0][0] = {title:'用户信息',link:'index.php?action=game_user_userList',is_default:1};
+_menu[0][3][1] = [];
+_menu[0][3][1][0] = {title:'用户权限',link:'index.php?action=user_set_authorityList',is_default:1};
+_menu[0][4] = [];
+_menu[0][4][0] = [];
+_menu[0][4][0][0] = {title:'设置分享',link:'index.php?action=gcoins_getgcoins_setShareList',is_default:1};
+_menu[0][4][1] = [];
+_menu[0][4][1][0] = {title:'GCoins消耗量',link:'index.php?action=gcoins_consume_consumeData',is_default:1};
+_menu[0][4][2] = [];
+_menu[0][4][2][0] = {title:'GCoins拥有量',link:'index.php?action=gcoins_havenum_havenum',is_default:1};
+_menu[0][5] = [];
+_menu[0][5][0] = [];
+_menu[0][5][0][0] = {title:'商品列表',link:'index.php?action=shop_goods_goodsList',is_default:1};
+_menu[0][5][1] = [];
+_menu[0][5][1][0] = {title:'商品兑换排序',link:'index.php?action=shop_goodschangelist_goodsChangeList',is_default:1};
+_menu[0][6] = [];
+_menu[0][6][0] = [];
+_menu[0][6][0][0] = {title:'客服工单',link:'index.php?action=kefu_order_orderList',is_default:1};
+_menu[0][6][1] = [];
+_menu[0][6][1][0] = {title:'FAQ',link:'index.php?action=kefu_faq_faqList',is_default:1};
+_menu[0][6][2] = [];
+_menu[0][6][2][0] = {title:'客服工单类别',link:'index.php?action=kefu_type_typeList',is_default:1};
+_menu[0][7] = [];
+_menu[0][7][0] = [];
+_menu[0][7][0][0] = {title:'悬浮球图片管理',link:'index.php?action=sball_manager_setImg',is_default:1};
+_menu[0][8] = [];
+_menu[0][8][0] = [];
+_menu[0][8][0][0] = {title:'LP游戏列表',link:'index.php?action=lp_web_lpwebList',is_default:1};
+_menu[0][8][0][1] = {title:'Banner和广告',link:'index.php?action=lp_web_setbannerad',is_default:0};
+_menu[0][8][1] = [];
+_menu[0][8][1][0] = {title:'LP点击次数',link:'index.php?action=lp_web_lpclicksList',is_default:1};
+_menu[0][9] = [];
+_menu[0][9][0] = [];
+_menu[0][9][0][0] = {title:'sendToMessenger列表',link:'index.php?action=sdk_interface_sendToMessengerList',is_default:1};
+_menu[1] = [];
+_menu[1][0] = [];
+_menu[1][0][0] = [];
+_menu[1][0][0][0] = {title:'渠道用户详情',link:'index.php?action=statistics-market-qdData',is_default:1};
+_menu[1][0][1] = [];
+_menu[1][0][1][0] = {title:'区间用户充值分析',link:'index.php?action=statistics-market-qjData',is_default:1};
+_menu[1][0][2] = [];
+_menu[1][0][2][0] = {title:'区间用户留存数据分析',link:'index.php?action=statistics-market-qjDataLc',is_default:1};
+_menu[1][1] = [];
+_menu[1][1][0] = [];
+_menu[1][1][0][0] = {title:'平台分享统计',link:'index.php?action=plat-ptshare-ptshareData',is_default:1};
+_menu[2] = [];
+_menu[2][0] = [];
+_menu[2][0][0] = [];
+_menu[2][0][0][0] = {title:'管理员管理',link:'index.php?action=admin-user-userList',is_default:1};
+_menu[2][0][1] = [];
+_menu[2][0][1][0] = {title:'角色管理',link:'index.php?action=admin-role-roleList',is_default:1};
+_menu[3] = [];
+_menu[3][0] = [];
+_menu[3][0][0] = [];
+_menu[3][0][0][0] = {title:'悬浮球菜单更多',link:'index.php?action=net-sballmenu-gameMoreData',is_default:1};
+_menu[3][0][1] = [];
+_menu[3][0][1][0] = {title:'游戏SDK GoogleAd列表',link:'index.php?action=net-games-googleAdDataList',is_default:1};
+	
+//高度菜单
+function highLightMenu(mainid, subid, itemid) {
+    $('#menu' + mainid + '_' + subid + '_' + itemid).attr('class', 'current');
+    $('#menu' + mainid + '_' + subid + '_' + itemid).blur();
+
+    setCookie("menu_mainid", mainid);
+    setCookie("menu_subid", subid);
+    setCookie("menu_itemid", itemid);
+
+    //调用对应的标签
+    createTab('tablist', mainid, subid, itemid);
+    $('li>a').not('#menu' + mainid + '_' + subid + '_' + itemid).removeClass('current');
+}
+
+//高亮标签
+function highLightTab(mainid, subid, tabid) {
+    setCookie("menu_tabid", tabid);
+    $('#tab_' + mainid + '_' + subid + '_' + tabid).attr('class', 'current');
+    $('#tablist>a').not('#tab_' + mainid + '_' + subid + '_' + tabid).removeClass('current');
+}
+
+//在一个容量中创建一组标签
+function createTab(container_id, mainid, subid, itemid) {
+    setCookie("menu_tabid", 0);
+    var _containerObj = document.getElementById(container_id);
+    var _len = _menu[mainid][subid][itemid].length;
+    var _str = '';
+
+    for (var i = 0; i < _len; i++) {
+        if (_menu[mainid][subid][itemid][i].is_default == 1) {
+            _str += '<a id="tab_' + mainid + '_' + subid + '_' + i + '" href="' + _menu[mainid][subid][itemid][i].link + '" target="mainframe" onclick="highLightTab(' + mainid + ',' + subid + ',' + i + ');" class="current" ><span>' + _menu[mainid][subid][itemid][i].title + '</span></a>';
+        } else {
+            _str += '<a id="tab_' + mainid + '_' + subid + '_' + i + '" href="' + _menu[mainid][subid][itemid][i].link + '" target="mainframe" onclick="highLightTab(' + mainid + ',' + subid + ',' + i + ');"><span>' + _menu[mainid][subid][itemid][i].title + '</span></a>';
+        }
+    }
+    _containerObj.innerHTML = _str;
+}
+	
+//展开菜单
+function expandMenu(index) {
+    var menu_num = _menu.length;
+    var prefix = 'menu';
+    for (var i = 0; i <= menu_num; i++) {
+        if ($('#' + prefix + i).length == 0) {
+            break;
+        }
+        if (i == index) {
+            $('#' + prefix + i + '_content').show();
+            $('#' + prefix + i).attr('class', 't t-current');
+
+            expandSubMenu(index, 0);
+
+            //看看子菜单中是否有初始化
+            highLightMenu(i, 0, 0);
+
+            if(_menu[i][0][0][0].link != '#') {
+                document.getElementById('mainframe').src = _menu[i][0][0][0].link;
+            }
+        } else {
+            $('#' + prefix + i).attr('class', 't');
+            $('#' + prefix + i + '_content').hide();
+        }
+    }
+}
+
+//展开子菜单
+function expandSubMenu(index, cur_id) {
+	var menu_num = _menu[index].length;
+	var prefix = 'menu';
+	
+	for (var i = 0; i <= menu_num; i++) {
+		if ($('#' + prefix + index + '_' + i).length == 0) {
+			break;
+		}
+	
+		if (i == cur_id) {
+			$('#' + prefix + index + '_' + i + '_content').show();
+			$('#' + prefix + index + '_' + i).attr('class', 'sub-t-up');
+			
+			highLightMenu(index, i, 0);
+			
+			if (_menu[index][i][0][0].link != '#') {
+				document.getElementById('mainframe').src = _menu[index][i][0][0].link;
+			}
+		} else {
+			$('#' + prefix + index + '_' + i + '_content').hide();
+			$('#' + prefix + index + '_' + i).attr('class', 'sub-t-down');
+		}
+	}
+}
+
+//开关左侧菜单
+function switchBar() {
+	var menuObj = $('#dc-frame-menu');
+	var topObj = $('#menu_top');
+	var switchObj = $('#dc-frame-switch-bar');
+	
+	if (menuObj.is(":hidden")) {
+		menuObj.show();
+		topObj.show();
+		$('#dc-frame-switch-bar>span').removeClass('open');
+		$('#dc-frame-switch-bar>span').attr({title:"关闭侧栏"});
+	} else {
+		menuObj.hide();
+		topObj.hide();
+		$('#dc-frame-switch-bar>span').addClass('open');
+		$('#dc-frame-switch-bar>span').attr({title:"打开侧栏"});
+	}
+}
+
+//不允许使用右键
+document.oncontextmenu = function() {
+    //alert('不允许使用右键!');
+    //return false
+}
+
+$(document).ready(function () {
+	
+	//初始化弹出框
+    $("#dialog").dialog({
+    	bgiframe: true,
+        height: 340,
+        modal: true
+    });
+	
+	var menu_itemid = getCookie("menu_itemid");
+	var menu_mainid = getCookie("menu_mainid");
+	var menu_subid = getCookie("menu_subid");
+	var menu_tabid = getCookie("menu_tabid");
+	
+	if (menu_mainid != undefined && menu_mainid != '' && menu_subid != undefined && menu_subid != '' && menu_itemid != undefined && menu_itemid != '') {
+		expandMenu(menu_mainid);
+		expandSubMenu(menu_mainid, menu_subid);
+		highLightMenu(menu_mainid, menu_subid, menu_itemid);
+		
+		if (menu_tabid != undefined) {
+			highLightTab(menu_mainid, menu_subid, menu_tabid);
+			document.getElementById('mainframe').src = _menu[menu_mainid][menu_subid][menu_itemid][menu_tabid].link;
+		}
+	} else {
+		$('#menu0').attr('class', 't t-current');
+		$('#menu0_content').show();
+		$('#menu0_0').attr('class', 'sub-t-up');
+		$('#menu0_0_content').show();
+		
+		//expandMenu(0);
+		expandSubMenu(0, 0);
+	}
+
+	$('*').bind('keydown', function(event) {
+		if (event.ctrlKey && event.keyCode == 67) {
+			//alert('不允许使用ctrl+C');
+			return false;
+		}
+	});
+});
+
+</script>
+</head>
+
+<body><div style="position: absolute; z-index: 19700; top: -1970px; left: -1970px;"><iframe src="super_admin_files/My97DatePicker.html" border="0" scrolling="no" style="width: 186px; height: 199px;" frameborder="0"></iframe></div>
+<iframe id="submit_iframe" name="submit_iframe" style="position:absolute;top:0;left:500px;height:100px;width:600px;background:white;z-index:999;display:none;"></iframe>
+<input type="hidden" id="historyTab" name="historyTab" value="">
+<div id="dc-frame-top"> <sup></sup><sub></sub>
+  <div class="top-bar">
+    <div class="left"> <a href="https://admin.instaplay.games/index.php" title="百岳互动数据分析系统" class="logo">百岳互动数据分析系统</a>
+        <span>
+            上午好，<strong>高建歧</strong>
+        </span>
+    </div>
+    <div class="right"> <a href="javascript:;" class="help" title="异常反馈">异常反馈</a> <a href="javascript:;" class="help" title="帮助中心" target="_blank">帮助中心</a> <a href="https://admin.instaplay.games/index.php?action=logout" class="logout" title="安全退出">安全退出</a> </div>
+  </div>
+  <div class="menu-top" id="menu_top">
+    <h2><span>控制面板</span><a class="fixed-menu-switch fixed" href="javascript:;" onclick="setMenu()" title="取消菜单固定"></a></h2>
+  </div>
+  <div class="space"></div>
+  <div class="tab-outer">
+    <div class="dc-tab" id="tablist"><a id="tab_0_0_0" href="https://admin.instaplay.games/index.php?action=plat_stats_organizedata" target="mainframe" onclick="highLightTab(0,0,0);" class="current"><span>综合数据</span></a><a id="tab_0_0_1" href="https://admin.instaplay.games/index.php?action=plat_stats_retention" target="mainframe" onclick="highLightTab(0,0,1);"><span>留存数据</span></a><a id="tab_0_0_2" href="https://admin.instaplay.games/index.php?action=plat_stats_chargedata" target="mainframe" onclick="highLightTab(0,0,2);"><span>支付统计</span></a><a id="tab_0_0_3" href="https://admin.instaplay.games/index.php?action=plat_stats_organizedataofrole" target="mainframe" onclick="highLightTab(0,0,3);"><span>综合数据带创角</span></a></div>
+  </div>
+</div>
+<div id="dc-frame-menu">
+  <div class="dc-menu">
+        <div class="t t-current" id="menu0" onclick="expandMenu( 0 )"><img src="super_admin_files/s.gif" title="" class="gray">
+      平台管理    </div>
+    <div id="menu0_content" style="overflow: hidden;">
+              <div class="sub-t-up" id="menu0_0" onclick="expandSubMenu( 0 , 0 )">
+        运营基础功能      </div>
+            <ul id="menu0_0_content" style="">
+                <li><a id="menu0_0_0" href="https://admin.instaplay.games/index.php?action=plat_stats_organizedata" target="mainframe" onclick="highLightMenu( 0 , 0 , 0 )" class="current">
+          数据统计          </a></li>
+                <li><a id="menu0_0_1" href="https://admin.instaplay.games/index.php?action=plat_stats_charge" target="mainframe" onclick="highLightMenu( 0 , 0 , 1 )">
+          充值概况          </a></li>
+                <li><a id="menu0_0_2" href="https://admin.instaplay.games/index.php?action=plat_stats_channeltj" target="mainframe" onclick="highLightMenu( 0 , 0 , 2 )">
+          一键试玩          </a></li>
+                <li><a id="menu0_0_3" href="https://admin.instaplay.games/index.php?action=plat_sdk_popup" target="mainframe" onclick="highLightMenu( 0 , 0 , 3 )">
+          弹窗统计          </a></li>
+              </ul>
+                <div class="sub-t-down" id="menu0_1" onclick="expandSubMenu( 0 , 1 )">
+        游戏辅助功能      </div>
+            <ul id="menu0_1_content" style="display:none;">
+                <li><a id="menu0_1_0" href="https://admin.instaplay.games/index.php?action=game_manager_gameList" target="mainframe" onclick="highLightMenu( 0 , 1 , 0 )">
+          游戏管理          </a></li>
+                <li><a id="menu0_1_1" href="https://admin.instaplay.games/index.php?action=game_share_gameShareInfoList" target="mainframe" onclick="highLightMenu( 0 , 1 , 1 )">
+          游戏内分享管理          </a></li>
+                <li><a id="menu0_1_2" href="https://admin.instaplay.games/index.php?action=game_jctg_lbList" target="mainframe" onclick="highLightMenu( 0 , 1 , 2 )">
+          交叉推广管理          </a></li>
+                <li><a id="menu0_1_3" href="https://admin.instaplay.games/index.php?action=game_infor_inforList" target="mainframe" onclick="highLightMenu( 0 , 1 , 3 )">
+          资讯管理          </a></li>
+                <li><a id="menu0_1_4" href="https://admin.instaplay.games/index.php?action=game_gift_giftList" target="mainframe" onclick="highLightMenu( 0 , 1 , 4 )">
+          礼包管理          </a></li>
+                <li><a id="menu0_1_5" href="https://admin.instaplay.games/index.php?action=game_comment_commentList" target="mainframe" onclick="highLightMenu( 0 , 1 , 5 )">
+          评论管理          </a></li>
+                <li><a id="menu0_1_6" href="https://admin.instaplay.games/index.php?action=game_lp_list" target="mainframe" onclick="highLightMenu( 0 , 1 , 6 )">
+          LP管理          </a></li>
+                <li><a id="menu0_1_7" href="https://admin.instaplay.games/index.php?action=game_channel_list" target="mainframe" onclick="highLightMenu( 0 , 1 , 7 )">
+          渠道管理          </a></li>
+                <li><a id="menu0_1_8" href="https://admin.instaplay.games/index.php?action=game_activity_list" target="mainframe" onclick="highLightMenu( 0 , 1 , 8 )">
+          活动(投放URL)管理          </a></li>
+              </ul>
+                <div class="sub-t-down" id="menu0_2" onclick="expandSubMenu( 0 , 2 )">
+        消息管理      </div>
+            <ul id="menu0_2_content" style="display:none;">
+                <li><a id="menu0_2_0" href="https://admin.instaplay.games/index.php?action=plat_publicnum_publicnumList" target="mainframe" onclick="highLightMenu( 0 , 2 , 0 )">
+          游戏APP列表          </a></li>
+                <li><a id="menu0_2_1" href="https://admin.instaplay.games/index.php?action=plat_weixin_weiXinSendList" target="mainframe" onclick="highLightMenu( 0 , 2 , 1 )">
+          BOT消息          </a></li>
+                <li><a id="menu0_2_2" href="https://admin.instaplay.games/index.php?action=plat_cp_cpNewsList" target="mainframe" onclick="highLightMenu( 0 , 2 , 2 )">
+          CP消息          </a></li>
+                <li><a id="menu0_2_3" href="https://admin.instaplay.games/index.php?action=plat_bot_gzBotByDateList" target="mainframe" onclick="highLightMenu( 0 , 2 , 3 )">
+          关注BOT列表          </a></li>
+              </ul>
+                <div class="sub-t-down" id="menu0_3" onclick="expandSubMenu( 0 , 3 )">
+        用户管理      </div>
+            <ul id="menu0_3_content" style="display:none;">
+                <li><a id="menu0_3_0" href="https://admin.instaplay.games/index.php?action=game_user_userList" target="mainframe" onclick="highLightMenu( 0 , 3 , 0 )">
+          用户管理          </a></li>
+                <li><a id="menu0_3_1" href="https://admin.instaplay.games/index.php?action=user_set_authorityList" target="mainframe" onclick="highLightMenu( 0 , 3 , 1 )">
+          用户权限          </a></li>
+              </ul>
+                <div class="sub-t-down" id="menu0_4" onclick="expandSubMenu( 0 , 4 )">
+        GCoins管理      </div>
+            <ul id="menu0_4_content" style="display:none;">
+                <li><a id="menu0_4_0" href="https://admin.instaplay.games/index.php?action=gcoins_getgcoins_setShareList" target="mainframe" onclick="highLightMenu( 0 , 4 , 0 )">
+          赚取GCoins之分享          </a></li>
+                <li><a id="menu0_4_1" href="https://admin.instaplay.games/index.php?action=gcoins_consume_consumeData" target="mainframe" onclick="highLightMenu( 0 , 4 , 1 )">
+          GCoins消耗总量          </a></li>
+                <li><a id="menu0_4_2" href="https://admin.instaplay.games/index.php?action=gcoins_havenum_havenum" target="mainframe" onclick="highLightMenu( 0 , 4 , 2 )">
+          GCoins拥有量          </a></li>
+              </ul>
+                <div class="sub-t-down" id="menu0_5" onclick="expandSubMenu( 0 , 5 )">
+        商城管理      </div>
+            <ul id="menu0_5_content" style="display:none;">
+                <li><a id="menu0_5_0" href="https://admin.instaplay.games/index.php?action=shop_goods_goodsList" target="mainframe" onclick="highLightMenu( 0 , 5 , 0 )">
+          商品列表          </a></li>
+                <li><a id="menu0_5_1" href="https://admin.instaplay.games/index.php?action=shop_goodschangelist_goodsChangeList" target="mainframe" onclick="highLightMenu( 0 , 5 , 1 )">
+          商品兑换排序          </a></li>
+              </ul>
+                <div class="sub-t-down" id="menu0_6" onclick="expandSubMenu( 0 , 6 )">
+        客服工单      </div>
+            <ul id="menu0_6_content" style="display:none;">
+                <li><a id="menu0_6_0" href="https://admin.instaplay.games/index.php?action=kefu_order_orderList" target="mainframe" onclick="highLightMenu( 0 , 6 , 0 )">
+          客服工单          </a></li>
+                <li><a id="menu0_6_1" href="https://admin.instaplay.games/index.php?action=kefu_faq_faqList" target="mainframe" onclick="highLightMenu( 0 , 6 , 1 )">
+          FAQ管理          </a></li>
+                <li><a id="menu0_6_2" href="https://admin.instaplay.games/index.php?action=kefu_type_typeList" target="mainframe" onclick="highLightMenu( 0 , 6 , 2 )">
+          客服工单类别管理          </a></li>
+              </ul>
+                <div class="sub-t-down" id="menu0_7" onclick="expandSubMenu( 0 , 7 )">
+        悬浮球管理      </div>
+            <ul id="menu0_7_content" style="display:none;">
+                <li><a id="menu0_7_0" href="https://admin.instaplay.games/index.php?action=sball_manager_setImg" target="mainframe" onclick="highLightMenu( 0 , 7 , 0 )">
+          悬浮球图片管理          </a></li>
+              </ul>
+                <div class="sub-t-down" id="menu0_8" onclick="expandSubMenu( 0 , 8 )">
+        LP推广网站管理      </div>
+            <ul id="menu0_8_content" style="display:none;">
+                <li><a id="menu0_8_0" href="https://admin.instaplay.games/index.php?action=lp_web_lpwebList" target="mainframe" onclick="highLightMenu( 0 , 8 , 0 )">
+          LP推广网站管理          </a></li>
+                <li><a id="menu0_8_1" href="https://admin.instaplay.games/index.php?action=lp_web_lpclicksList" target="mainframe" onclick="highLightMenu( 0 , 8 , 1 )">
+          LP点击次数          </a></li>
+              </ul>
+                <div class="sub-t-down" id="menu0_9" onclick="expandSubMenu( 0 , 9 )">
+        SDK接口管理      </div>
+            <ul id="menu0_9_content" style="display:none;">
+                <li><a id="menu0_9_0" href="https://admin.instaplay.games/index.php?action=sdk_interface_sendToMessengerList" target="mainframe" onclick="highLightMenu( 0 , 9 , 0 )">
+          sendToMessenger管理          </a></li>
+              </ul>
+          </div>
+        <div class="t" id="menu1" onclick="expandMenu( 1 )"><img src="super_admin_files/s.gif" title="" class="gray">
+      数据统计    </div>
+    <div id="menu1_content" style="display:none;overflow:hidden;">
+              <div class="sub-t-down" id="menu1_0" onclick="expandSubMenu( 1 , 0 )">
+        市场数据统计      </div>
+            <ul id="menu1_0_content" style="display:none;">
+                <li><a id="menu1_0_0" href="https://admin.instaplay.games/index.php?action=statistics-market-qdData" target="mainframe" onclick="highLightMenu( 1 , 0 , 0 )">
+          渠道用户详情          </a></li>
+                <li><a id="menu1_0_1" href="https://admin.instaplay.games/index.php?action=statistics-market-qjData" target="mainframe" onclick="highLightMenu( 1 , 0 , 1 )">
+          区间用户充值分析          </a></li>
+                <li><a id="menu1_0_2" href="https://admin.instaplay.games/index.php?action=statistics-market-qjDataLc" target="mainframe" onclick="highLightMenu( 1 , 0 , 2 )">
+          区间用户留存数据分析          </a></li>
+              </ul>
+                <div class="sub-t-down" id="menu1_1" onclick="expandSubMenu( 1 , 1 )">
+        分享数据      </div>
+            <ul id="menu1_1_content" style="display:none;">
+                <li><a id="menu1_1_0" href="https://admin.instaplay.games/index.php?action=plat-ptshare-ptshareData" target="mainframe" onclick="highLightMenu( 1 , 1 , 0 )">
+          平台分享统计          </a></li>
+              </ul>
+          </div>
+        <div class="t" id="menu2" onclick="expandMenu( 2 )"><img src="super_admin_files/s.gif" title="" class="gray">
+      系统管理    </div>
+    <div id="menu2_content" style="display:none;overflow:hidden;">
+              <div class="sub-t-down" id="menu2_0" onclick="expandSubMenu( 2 , 0 )">
+        系统功能      </div>
+            <ul id="menu2_0_content" style="display:none;">
+                <li><a id="menu2_0_0" href="https://admin.instaplay.games/index.php?action=admin-user-userList" target="mainframe" onclick="highLightMenu( 2 , 0 , 0 )">
+          管理员管理          </a></li>
+                <li><a id="menu2_0_1" href="https://admin.instaplay.games/index.php?action=admin-role-roleList" target="mainframe" onclick="highLightMenu( 2 , 0 , 1 )">
+          角色管理          </a></li>
+              </ul>
+          </div>
+        <div class="t" id="menu3" onclick="expandMenu( 3 )"><img src="super_admin_files/s.gif" title="" class="gray">
+      .NET网站管理    </div>
+    <div id="menu3_content" style="display:none;overflow:hidden;">
+              <div class="sub-t-down" id="menu3_0" onclick="expandSubMenu( 3 , 0 )">
+        内容管理      </div>
+            <ul id="menu3_0_content" style="display:none;">
+                <li><a id="menu3_0_0" href="https://admin.instaplay.games/index.php?action=net-sballmenu-gameMoreData" target="mainframe" onclick="highLightMenu( 3 , 0 , 0 )">
+          悬浮球菜单更多          </a></li>
+                <li><a id="menu3_0_1" href="https://admin.instaplay.games/index.php?action=net-games-googleAdDataList" target="mainframe" onclick="highLightMenu( 3 , 0 , 1 )">
+          游戏SDK GoogleAd管理          </a></li>
+              </ul>
+          </div>
+      </div>
+</div>
+<div id="dc-frame-switch-bar" onclick="switchBar()" title="关闭侧栏"><em></em><span></span></div>
+<div id="dc-frame-main">
+  <div id="dc-frame-main-inner">
+    <iframe id="mainframe" name="mainframe" scrolling="yes" marginheight="0" marginwidth="0" src="super_admin_files/index.html" style="position:absolute;top:0;left:0;visibility:visible;overflow:auto;height:100%;width:100%;z-index:1;" frameborder="0"></iframe>
+  </div>
+</div>
+<div id="dc-frame-bottom">
+  <div class="left">© 2016 5543平台</div>
+</div>
+<div class="dc-pop-box">
+  <div class="top">您好，真诚邀请您参与调查:-)</div>
+  <div class="content">
+    <h3>您对数据中心哪方面还不够满意？</h3>
+    <ul>
+      <li>
+        <input type="checkbox">
+        速度还是不够快</li>
+      <li>
+        <input type="checkbox">
+        界面还是不够拉风</li>
+      <li>
+        <input type="checkbox">
+        数据统计表格看起来有点费劲，我就要看看折行以后的效果是怎么样的！</li>
+    </ul>
+    <h3>留下您的宝贵意见</h3>
+    <div class="btn-outer">
+      <input type="button" value="提交">
+      <input type="checkbox" value="">
+      不再显示 </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+var menuBackDelayTimer = null;
+
+//检测浏览器对css3 transition属性的支持情况
+var transitionSupport = (function() {
+	var oDiv = document.createElement('div');
+	var attrStr = '';
+	for (var o in oDiv.style) {
+		attrStr += o;
+	}
+	return /transition|webkittransition|moztransition|mstransition|otransition/i.test(attrStr);
+})();
+
+if (getCookie('menu-fixed') === '0') {
+	setTimeout(function() {
+		fixedMenuOff();
+		$('#dc-frame-menu').trigger('mouseleave');
+	}, 100);
+}
+
+function setMenu() {
+	if ($('body').hasClass('auto-menu')) {
+		fixedMenuOn();
+	} else {
+		fixedMenuOff();
+	}
+}
+
+function fixedMenuOn() {
+	$('body').removeClass('auto-menu');
+	$('#dc-frame-menu').height('100%');
+	$('.fixed-menu-switch').attr('title', '取消菜单固定');
+	$('#dc-frame-menu,#menu_top').unbind('mouseleave mouseenter');
+	$('#dc-frame-switch-bar,#dc-frame-top .space').unbind('mouseenter');
+	setCookie('menu-fixed', 1);
+}
+
+function fixedMenuOff() {
+	$('body').addClass('auto-menu');
+	$('.fixed-menu-switch').attr('title', '菜单固定');
+	$('#dc-frame-menu').height(autoMenuHeight());
+	
+	$('#dc-frame-menu,#menu_top').unbind('mouseleave').bind('mouseleave', function() {
+		menuBackDelayTimer = setTimeout(function() {
+			if (transitionSupport) {
+				$('#dc-frame-menu').add('#menu_top').css('left', - 171);
+			} else {
+				$('#dc-frame-menu').add('#menu_top').stop(true, true).animate({'left': - 171}, 200);
+			}
+		}, 50);
+	});
+	
+	$('#dc-frame-switch-bar,#dc-frame-top .space,#dc-frame-menu,#menu_top').unbind('mouseenter').bind('mouseenter', function(){
+		if (menuBackDelayTimer) {
+			clearTimeout(menuBackDelayTimer);
+			menuBackDelayTimer = null;
+		}
+		if (transitionSupport) {
+			$('#dc-frame-menu').add('#menu_top').css('left', 0);
+		} else {
+			$('#dc-frame-menu').add('#menu_top').stop(true, true).animate({'left':0}, 200);
+		}
+	});
+	
+	setCookie('menu-fixed', 0);
+}
+
+function autoMenuHeight() {
+	return $(window).height() - $('#dc-frame-bottom').height() - $('#dc-frame-top').height();
+}
+
+$(window).resize(function() {
+	$('body').hasClass('auto-menu') && $('#dc-frame-menu').height(autoMenuHeight());
+});
+
+</script>
+
+</body></html>
